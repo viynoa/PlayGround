@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07100f">
+  <title>THE LAST MARGIN — XAUUSD Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="room-light"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="The Last Margin home"><span class="brand-mark">◈</span><span>THE LAST <b>MARGIN</b></span></a>
+    <div class="top-center"><span class="live-dot"></span> SIMULATION LIVE <span class="top-divider">/</span><span id="session-label">ASIA SESSION</span></div>
+    <div class="top-actions"><button class="icon-btn" id="sound-toggle" title="Toggle sound">♫</button><button class="icon-btn" id="settings-button" title="Settings">⚙</button><button class="avatar" title="Trader profile">JD</button></div>
+  </header>
+  <main class="app-shell">
+    <section class="intro-row">
+      <div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR JOURNEY · <span id="chapter-number">CHAPTER 01</span></div><h1 id="chapter-title">The Beginning</h1><p id="chapter-subtitle">Every great trader starts with one decision.</p></div>
+      <button class="chapter-button" id="chapter-button"><span class="chapter-icon">▤</span><span><b>STORY MODE</b><small id="chapter-progress">01 / 05 · THE BEGINNING</small></span><span class="chevron">⌄</span></button>
+    </section>
+
+    <section class="stats-grid" aria-label="Account metrics">
+      <article class="stat-card balance-card"><div class="stat-label">BALANCE <span class="info">ⓘ</span></div><div class="stat-value" id="balance">$100.00</div><div class="stat-foot"><span class="positive">CENT ACCOUNT</span><span class="muted">USD</span></div></article>
+      <article class="stat-card"><div class="stat-label">EQUITY <span class="info">ⓘ</span></div><div class="stat-value" id="equity">$100.00</div><div class="stat-foot"><span class="muted">Balance + floating P/L</span></div></article>
+      <article class="stat-card"><div class="stat-label">FLOATING P/L</div><div class="stat-value neutral" id="floating">$0.00</div><div class="stat-foot"><span class="muted">Open positions</span><span class="tiny-pill" id="open-count">0 OPEN</span></div></article>
+      <article class="stat-card"><div class="stat-label">MARGIN LEVEL <span class="info">ⓘ</span></div><div class="stat-value" id="margin-level">—</div><div class="stat-foot"><span class="muted" id="free-margin">Free margin $100.00</span><span class="margin-dot"></span></div></article>
+    </section>
+
+    <div class="workspace">
+      <section class="market-panel panel">
+        <div class="instrument-head">
+          <div class="instrument-name"><span class="gold-icon">Au</span><span><b>XAUUSD</b><small>Gold / U.S. Dollar <span class="market-open">● MARKET OPEN</span></small></span></div>
+          <div class="price-block"><div class="price" id="current-price">2,341.62</div><div class="price-change" id="price-change">+0.00 <span>(0.00%)</span></div></div>
+          <div class="market-meta"><span>SPREAD</span><b id="spread">0.30</b><span class="meta-sep">·</span><span>LEVERAGE</span><b>1:100</b></div>
+        </div>
+        <div class="chart-toolbar"><div class="timeframes" role="group" aria-label="Chart timeframe"><button class="tf active" data-tf="M1">M1</button><button class="tf" data-tf="M5">M5</button><button class="tf" data-tf="M15">M15</button><button class="tf" data-tf="H1">H1</button><button class="tf" data-tf="H4">H4</button></div><div class="chart-tools"><span class="market-regime"><i id="regime-dot"></i><span id="regime">SIDEWAYS</span></span><button class="chart-icon" id="chart-expand" title="Toggle chart view">⛶</button></div></div>
+        <div class="chart-wrap"><canvas id="chart" aria-label="Live XAUUSD candlestick chart"></canvas><div class="chart-overlay"><span class="chart-tag">XAUUSD · <span id="chart-tf">M1</span></span><span class="chart-legend"><i class="bull-swatch"></i> Bull <i class="bear-swatch"></i> Bear</span></div><div class="event-toast" id="event-toast"><span>⚡</span><span id="event-text">MARKET UPDATE</span></div></div>
+        <div class="chart-footer"><span><i class="live-dot"></i> LIVE PRICE FEED</span><span id="market-clock">00:00:00</span><span>VOLATILITY <b id="volatility">NORMAL</b></span></div>
+      </section>
+
+      <aside class="order-panel panel">
+        <div class="panel-title"><div><span class="section-kicker">EXECUTION</span><h2>New order</h2></div><button class="more-btn" id="order-mode" title="Switch order type">•••</button></div>
+        <div class="order-type-row"><button class="order-type active" data-type="market">Market execution</button><button class="order-type" data-type="pending">Pending order</button></div>
+        <div class="pending-options hidden" id="pending-options"><label for="pending-price">ENTRY PRICE</label><input id="pending-price" type="number" step="0.01" value="2341.62"></div>
+        <div class="lot-label"><label for="lot-size">VOLUME <span class="info">ⓘ</span></label><span class="lot-hint">LOTS</span></div>
+        <div class="lot-control"><button id="lot-minus" aria-label="Decrease lot">−</button><input id="lot-size" type="number" min="0.01" max="10" step="0.01" value="0.01"><button id="lot-plus" aria-label="Increase lot">+</button></div>
+        <div class="lot-presets"><button data-lot="0.01">0.01</button><button data-lot="0.05">0.05</button><button data-lot="0.10">0.10</button><button data-lot="0.50">0.50</button></div>
+        <div class="sl-tp-grid"><div><label for="stop-loss">STOP LOSS <span class="optional">OPTIONAL</span></label><div class="price-input"><input id="stop-loss" type="number" placeholder="Price"><span>USD</span></div></div><div><label for="take-profit">TAKE PROFIT <span class="optional">OPTIONAL</span></label><div class="price-input"><input id="take-profit" type="number" placeholder="Price"><span>USD</span></div></div></div>
+        <div class="order-estimate"><span>Required margin <b id="required-margin">$2.34</b></span><span>Est. spread cost <b id="spread-cost">$0.30</b></span></div>
+        <div class="trade-buttons"><button id="sell-button" class="trade-button sell"><span>SELL</span><b id="sell-quote">2,341.47</b><i>↘</i></button><button id="buy-button" class="trade-button buy"><span>BUY</span><b id="buy-quote">2,341.77</b><i>↗</i></button></div>
+        <div class="order-note"><span class="shield">◈</span> Risk first. Your account is <b>simulated</b>.</div>
+      </aside>
+    </div>
+
+    <section class="lower-grid">
+      <div class="positions-panel panel"><div class="lower-head"><div><span class="section-kicker">YOUR EXPOSURE</span><h2>Open positions <span class="count-badge" id="positions-badge">0</span></h2></div><button class="text-button" id="close-all">Close all <span>↗</span></button></div><div class="table-scroll"><table><thead><tr><th>SYMBOL / TYPE</th><th>VOLUME</th><th>OPEN PRICE</th><th>SL / TP</th><th>MARKET PRICE</th><th>PROFIT</th><th></th></tr></thead><tbody id="positions-body"><tr class="empty-row"><td colspan="7"><span class="empty-icon">◌</span> No open positions <small>Your next decision starts here.</small></td></tr></tbody></table></div></div>
+      <aside class="coach-card panel"><div class="coach-top"><span class="coach-avatar">M</span><span class="coach-label">YOUR MENTOR <i>● ONLINE</i></span><button id="coach-next" class="more-btn">↻</button></div><p id="coach-message">“A good trade is one where you knew your risk before you clicked.”</p><div class="coach-foot"><span>MARKET NOTE</span><span id="coach-time">JUST NOW</span></div></aside>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="history-panel panel"><div class="lower-head"><div><span class="section-kicker">RECENT ACTIVITY</span><h2>Trade history</h2></div><span class="history-total" id="history-count">0 CLOSED</span></div><div id="history-list" class="history-list"><div class="history-empty">Your closed trades will appear here.</div></div></div>
+      <div class="story-card panel"><div class="story-head"><span class="story-star">✦</span><span class="section-kicker">THE LAST MARGIN · STORY MODE</span><button id="story-open" class="text-button">JOURNAL ↗</button></div><h3 id="story-heading">A small account. A real decision.</h3><p id="story-copy">Gold never asks how much you have. It only asks if you know what you stand to lose.</p><div class="chapter-track" id="chapter-track"><i class="current"></i><i></i><i></i><i></i><i></i><span>01 — 05</span></div></div>
+    </section>
+    <footer><span>THE LAST MARGIN <i>·</i> TRAINING SIMULATOR</span><span>Markets are simulated. No real money is involved.</span><button id="reset-game">RESET ACCOUNT</button></footer>
+  </main>
+  <div class="modal-backdrop hidden" id="modal-backdrop"><div class="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modal-close">×</button><div id="modal-content"></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
